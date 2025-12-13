@@ -9,7 +9,7 @@ end
 
 -- PLACE 1
 if placeId == 9030362964 then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/yourname/script1.lua"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/azureblueday/starscripts/refs/heads/main/FieldGoalSimulator.luau"))()
 
 -- PLACE 2
 elseif placeId == 2222222222 then
