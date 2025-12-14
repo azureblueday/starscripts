@@ -20,7 +20,7 @@ elseif placeId == 8204899140  then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/azureblueday/starscripts/refs/heads/main/FootballFusion2.luau"))()
 
 -- ff2 practice
-elseif == 8206123457  then
+elseif placeid == 8206123457  then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/azureblueday/starscripts/refs/heads/main/FootballFusion2.luau"))()
 -- FALLBACK
 else
