@@ -16,9 +16,8 @@ elseif placeId == 205224386 then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/azureblueday/starscripts/refs/heads/main/HideAndSeekExtreme.luau"))()
 
 -- PLACE 3
-elseif placeId == 3333333333 then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/yourname/script3.lua"))()
-
+elseif placeId == 8204899140 then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/azureblueday/starscripts/refs/heads/main/FootballFusion2.luau"))()
 -- FALLBACK
 else
     game.Players.LocalPlayer:Kick("Nova Hub | Unsupported Game!")
