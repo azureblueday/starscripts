@@ -21,5 +21,5 @@ elseif placeId == 3333333333 then
 
 -- FALLBACK
 else
-    game.Players.LocalPlayer:Kick("starscripts | Unsupported Game!")
+    game.Players.LocalPlayer:Kick("Nova Hub | Unsupported Game!")
 end
