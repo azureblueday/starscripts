@@ -7,13 +7,13 @@ if table.find(dogshitlist, dogshit) then
     game.Players.LocalPlayer:Kick("ew solara 🤢")
 end
 
--- PLACE 1
+-- field goal sim
 if placeId == 9030362964 then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/azureblueday/starscripts/refs/heads/main/FieldGoalSimulator.luau"))()
 
--- PLACE 2
-elseif placeId == 2222222222 then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/yourname/script2.lua"))()
+-- hide and seek extreme
+elseif placeId == 205224386 then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/azureblueday/starscripts/refs/heads/main/HideAndSeekExtreme.luau"))()
 
 -- PLACE 3
 elseif placeId == 3333333333 then
