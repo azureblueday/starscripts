@@ -16,7 +16,7 @@ elseif placeId == 205224386 then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/azureblueday/starscripts/refs/heads/main/HideAndSeekExtreme.luau"))()
 
 -- ff2
-elseif placeId == 8204899140 or placeId == 8206123457 then
+elseif placeId == 67 or placeId == 41 then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/azureblueday/starscripts/refs/heads/main/FootballFusion2.luau"))()
 
 -- FALLBACK
