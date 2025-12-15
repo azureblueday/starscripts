@@ -3569,36 +3569,6 @@ function library:Init(key)
     return TabLibrary
 end
 
---// Mobile Detection (Studio + Live)
-do
-    local UIS = Services.UserInputService
-    local RS = Services.RunService
-
-    library.IsMobile = false
-    library.DevicePlatform = nil
-    library.MinSize = Vector2.new(480, 360)
-
-    if RS:IsStudio() then
-        if UIS.TouchEnabled and not UIS.MouseEnabled then
-            library.IsMobile = true
-            library.MinSize = Vector2.new(480, 240)
-        end
-    else
-        pcall(function()
-            library.DevicePlatform = UIS:GetPlatform()
-        end)
-
-        library.IsMobile = (
-            library.DevicePlatform == Enum.Platform.Android
-            or library.DevicePlatform == Enum.Platform.IOS
-        )
-
-        library.MinSize = library.IsMobile
-            and Vector2.new(480, 240)
-            or Vector2.new(480, 360)
-    end
-end
-
 --// Mobile Detection (SAFE)
 do
     local UserInputService = game:GetService("UserInputService")
