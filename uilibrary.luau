@@ -3568,4 +3568,118 @@ function library:Init(key)
     end
     return TabLibrary
 end
+
+--// Device & Platform Detection
+library.IsMobile = false
+library.DevicePlatform = nil
+library.MinSize = Vector2.new(480, 360)
+
+do
+    local UIS = Services.UserInputService
+    local RS = Services.RunService
+
+    if RS:IsStudio() then
+        -- Studio detection (mouse vs touch)
+        if UIS.TouchEnabled and not UIS.MouseEnabled then
+            library.IsMobile = true
+            library.MinSize = Vector2.new(480, 240)
+        else
+            library.IsMobile = false
+            library.MinSize = Vector2.new(480, 360)
+        end
+    else
+        -- Live game detection
+        pcall(function()
+            library.DevicePlatform = UIS:GetPlatform()
+        end)
+
+        library.IsMobile = (
+            library.DevicePlatform == Enum.Platform.Android
+            or library.DevicePlatform == Enum.Platform.IOS
+        )
+
+        library.MinSize = library.IsMobile
+            and Vector2.new(480, 240)
+            or Vector2.new(480, 360)
+    end
+end
+
+--// Mobile Toggle Button (Bottom-safe)
+do
+    if not library.IsMobile then
+        return
+    end
+
+    local TweenService = Services.TweenService
+    local CoreGui = Services.CoreGui
+
+    local gui = Instance.new("ScreenGui")
+    gui.Name = "LibraryMobileToggle"
+    gui.ResetOnSpawn = false
+    gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    gui.Parent = CoreGui
+
+    local button = Instance.new("Frame")
+    button.Parent = gui
+    button.Size = UDim2.fromOffset(44, 26)
+    button.Position = UDim2.fromOffset(10, 10)
+    button.BackgroundTransparency = 1
+
+    -- Edge (matches notifications / watermark)
+    local edge = Instance.new("Frame", button)
+    edge.BackgroundColor3 = library.backgroundColor
+    edge.Size = UDim2.new(1, 0, 1, 0)
+    edge.BackgroundTransparency = 0
+
+    local edgeCorner = Instance.new("UICorner", edge)
+    edgeCorner.CornerRadius = UDim.new(0, 4)
+
+    local edgeStroke = Instance.new("UIStroke", edge)
+    edgeStroke.Thickness = 1
+    edgeStroke.Color = library.lightGray
+
+    -- Gradient background
+    local bg = Instance.new("Frame", edge)
+    bg.AnchorPoint = Vector2.new(0.5, 0.5)
+    bg.Position = UDim2.fromScale(0.5, 0.5)
+    bg.Size = UDim2.new(1, -2, 1, -2)
+    bg.BackgroundTransparency = 0
+    bg.ClipsDescendants = true
+
+    local bgCorner = Instance.new("UICorner", bg)
+    bgCorner.CornerRadius = UDim.new(0, 4)
+
+    local bgGradient = Instance.new("UIGradient", bg)
+    bgGradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(34, 34, 34)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(28, 28, 28))
+    }
+    bgGradient.Rotation = 90
+
+    -- Text
+    local label = Instance.new("TextButton", bg)
+    label.Size = UDim2.new(1, 0, 1, 0)
+    label.BackgroundTransparency = 1
+    label.Text = "≡"
+    label.Font = library.Font
+    label.TextSize = 16
+    label.TextColor3 = Color3.fromRGB(198, 198, 198)
+    label.RichText = true
+    label.AutoButtonColor = false
+
+    -- Toggle logic
+    local visible = false
+
+    TweenWrapper:CreateStyle("mobile_toggle", 0.15)
+
+    label.Activated:Connect(function()
+        visible = not visible
+        library:ShowUI(visible)
+
+        TweenService:Create(edge, TweenWrapper.Styles["mobile_toggle"], {
+            BackgroundColor3 = visible and library.acientColor or library.backgroundColor
+        }):Play()
+    end)
+end
+
 return library
