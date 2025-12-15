@@ -3569,26 +3569,21 @@ function library:Init(key)
     return TabLibrary
 end
 
---// Device & Platform Detection
-library.IsMobile = false
-library.DevicePlatform = nil
-library.MinSize = Vector2.new(480, 360)
-
+--// Mobile Detection (Studio + Live)
 do
     local UIS = Services.UserInputService
     local RS = Services.RunService
 
+    library.IsMobile = false
+    library.DevicePlatform = nil
+    library.MinSize = Vector2.new(480, 360)
+
     if RS:IsStudio() then
-        -- Studio detection (mouse vs touch)
         if UIS.TouchEnabled and not UIS.MouseEnabled then
             library.IsMobile = true
             library.MinSize = Vector2.new(480, 240)
-        else
-            library.IsMobile = false
-            library.MinSize = Vector2.new(480, 360)
         end
     else
-        -- Live game detection
         pcall(function()
             library.DevicePlatform = UIS:GetPlatform()
         end)
@@ -3604,7 +3599,7 @@ do
     end
 end
 
---// Mobile Toggle Button (Bottom-safe)
+--// Mobile Toggle Button (Top-Left, Mobile Only)
 do
     if not library.IsMobile then
         return
@@ -3619,66 +3614,70 @@ do
     gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     gui.Parent = CoreGui
 
-    local button = Instance.new("Frame")
-    button.Parent = gui
-    button.Size = UDim2.fromOffset(44, 26)
-    button.Position = UDim2.fromOffset(10, 10)
-    button.BackgroundTransparency = 1
+    local holder = Instance.new("Frame")
+    holder.Parent = gui
+    holder.Position = UDim2.fromOffset(10, 10)
+    holder.Size = UDim2.fromOffset(42, 28)
+    holder.BackgroundTransparency = 1
 
-    -- Edge (matches notifications / watermark)
-    local edge = Instance.new("Frame", button)
-    edge.BackgroundColor3 = library.backgroundColor
-    edge.Size = UDim2.new(1, 0, 1, 0)
-    edge.BackgroundTransparency = 0
+    -- Outer frame (matches library containers)
+    local outer = Instance.new("Frame")
+    outer.Parent = holder
+    outer.Size = UDim2.new(1, 0, 1, 0)
+    outer.BackgroundColor3 = library.backgroundColor
 
-    local edgeCorner = Instance.new("UICorner", edge)
-    edgeCorner.CornerRadius = UDim.new(0, 4)
+    local corner = Instance.new("UICorner", outer)
+    corner.CornerRadius = UDim.new(0, 4)
 
-    local edgeStroke = Instance.new("UIStroke", edge)
-    edgeStroke.Thickness = 1
-    edgeStroke.Color = library.lightGray
+    local stroke = Instance.new("UIStroke", outer)
+    stroke.Thickness = 1
+    stroke.Color = library.lightGray
 
-    -- Gradient background
-    local bg = Instance.new("Frame", edge)
-    bg.AnchorPoint = Vector2.new(0.5, 0.5)
-    bg.Position = UDim2.fromScale(0.5, 0.5)
-    bg.Size = UDim2.new(1, -2, 1, -2)
-    bg.BackgroundTransparency = 0
-    bg.ClipsDescendants = true
+    -- Inner background
+    local inner = Instance.new("Frame")
+    inner.Parent = outer
+    inner.AnchorPoint = Vector2.new(0.5, 0.5)
+    inner.Position = UDim2.fromScale(0.5, 0.5)
+    inner.Size = UDim2.new(1, -2, 1, -2)
+    inner.BackgroundColor3 = Color3.fromRGB(28, 28, 28)
 
-    local bgCorner = Instance.new("UICorner", bg)
-    bgCorner.CornerRadius = UDim.new(0, 4)
+    local innerCorner = Instance.new("UICorner", inner)
+    innerCorner.CornerRadius = UDim.new(0, 4)
 
-    local bgGradient = Instance.new("UIGradient", bg)
-    bgGradient.Color = ColorSequence.new{
+    local gradient = Instance.new("UIGradient", inner)
+    gradient.Rotation = 90
+    gradient.Color = ColorSequence.new{
         ColorSequenceKeypoint.new(0, Color3.fromRGB(34, 34, 34)),
-        ColorSequenceKeypoint.new(1, Color3.fromRGB(28, 28, 28))
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(26, 26, 26))
     }
-    bgGradient.Rotation = 90
 
-    -- Text
-    local label = Instance.new("TextButton", bg)
-    label.Size = UDim2.new(1, 0, 1, 0)
-    label.BackgroundTransparency = 1
-    label.Text = "≡"
-    label.Font = library.Font
-    label.TextSize = 16
-    label.TextColor3 = Color3.fromRGB(198, 198, 198)
-    label.RichText = true
-    label.AutoButtonColor = false
+    -- Button
+    local button = Instance.new("TextButton")
+    button.Parent = inner
+    button.Size = UDim2.new(1, 0, 1, 0)
+    button.BackgroundTransparency = 1
+    button.Text = "≡"
+    button.Font = library.Font
+    button.TextSize = 16
+    button.TextColor3 = Color3.fromRGB(200, 200, 200)
+    button.AutoButtonColor = false
 
     -- Toggle logic
     local visible = false
 
-    TweenWrapper:CreateStyle("mobile_toggle", 0.15)
-
-    label.Activated:Connect(function()
+    button.Activated:Connect(function()
         visible = not visible
         library:ShowUI(visible)
 
-        TweenService:Create(edge, TweenWrapper.Styles["mobile_toggle"], {
-            BackgroundColor3 = visible and library.acientColor or library.backgroundColor
-        }):Play()
+        TweenService:Create(
+            outer,
+            TweenInfo.new(0.15),
+            {
+                BackgroundColor3 = visible
+                    and library.accentColor
+                    or library.backgroundColor
+            }
+        ):Play()
     end)
 end
 
