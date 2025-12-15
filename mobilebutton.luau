@@ -58,7 +58,7 @@ local function setCtrl(state)
         and Color3.fromRGB(45, 45, 45)
         or Color3.fromRGB(32, 32, 32)
 
-    button.Text = state and "Toggle • ON" or "Toggle"
+    button.Text = state and "Toggle" or "Toggle"
 end
 
 button.Activated:Connect(function()
