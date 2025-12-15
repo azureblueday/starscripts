@@ -3599,14 +3599,44 @@ do
     end
 end
 
---// Mobile Toggle Button (Top-Left, Mobile Only)
+--// Mobile Detection (SAFE)
+do
+    local UserInputService = game:GetService("UserInputService")
+    local RunService = game:GetService("RunService")
+
+    library.IsMobile = false
+    library.DevicePlatform = nil
+    library.MinSize = Vector2.new(480, 360)
+
+    if RunService:IsStudio() then
+        if UserInputService.TouchEnabled and not UserInputService.MouseEnabled then
+            library.IsMobile = true
+            library.MinSize = Vector2.new(480, 240)
+        end
+    else
+        pcall(function()
+            library.DevicePlatform = UserInputService:GetPlatform()
+        end)
+
+        library.IsMobile = (
+            library.DevicePlatform == Enum.Platform.Android
+            or library.DevicePlatform == Enum.Platform.IOS
+        )
+
+        library.MinSize = library.IsMobile
+            and Vector2.new(480, 240)
+            or Vector2.new(480, 360)
+    end
+end
+
+--// Mobile Toggle Button (TOP-LEFT, MOBILE ONLY)
 do
     if not library.IsMobile then
         return
     end
 
-    local TweenService = Services.TweenService
-    local CoreGui = Services.CoreGui
+    local TweenService = game:GetService("TweenService")
+    local CoreGui = game:GetService("CoreGui")
 
     local gui = Instance.new("ScreenGui")
     gui.Name = "LibraryMobileToggle"
@@ -3620,20 +3650,14 @@ do
     holder.Size = UDim2.fromOffset(42, 28)
     holder.BackgroundTransparency = 1
 
-    -- Outer frame (matches library containers)
     local outer = Instance.new("Frame")
     outer.Parent = holder
     outer.Size = UDim2.new(1, 0, 1, 0)
     outer.BackgroundColor3 = library.backgroundColor
 
-    local corner = Instance.new("UICorner", outer)
-    corner.CornerRadius = UDim.new(0, 4)
+    Instance.new("UICorner", outer).CornerRadius = UDim.new(0, 4)
+    Instance.new("UIStroke", outer).Color = library.lightGray
 
-    local stroke = Instance.new("UIStroke", outer)
-    stroke.Thickness = 1
-    stroke.Color = library.lightGray
-
-    -- Inner background
     local inner = Instance.new("Frame")
     inner.Parent = outer
     inner.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -3641,8 +3665,7 @@ do
     inner.Size = UDim2.new(1, -2, 1, -2)
     inner.BackgroundColor3 = Color3.fromRGB(28, 28, 28)
 
-    local innerCorner = Instance.new("UICorner", inner)
-    innerCorner.CornerRadius = UDim.new(0, 4)
+    Instance.new("UICorner", inner).CornerRadius = UDim.new(0, 4)
 
     local gradient = Instance.new("UIGradient", inner)
     gradient.Rotation = 90
@@ -3651,7 +3674,6 @@ do
         ColorSequenceKeypoint.new(1, Color3.fromRGB(26, 26, 26))
     }
 
-    -- Button
     local button = Instance.new("TextButton")
     button.Parent = inner
     button.Size = UDim2.new(1, 0, 1, 0)
@@ -3662,7 +3684,6 @@ do
     button.TextColor3 = Color3.fromRGB(200, 200, 200)
     button.AutoButtonColor = false
 
-    -- Toggle logic
     local visible = false
 
     button.Activated:Connect(function()
