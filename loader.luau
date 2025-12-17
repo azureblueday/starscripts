@@ -1,11 +1,5 @@
 -- Get current PlaceId
-local placeId = game.PlaceId
-local dogshit = identifyexecutor()
-local dogshitlist = { "Solara" }
-
-if table.find(dogshitlist, dogshit) then
-    game.Players.LocalPlayer:Kick("ew solara 🤢")
-end
+local placeId = game.PlaceID
 
 -- field goal sim
 if placeId == 9030362964 then
