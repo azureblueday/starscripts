@@ -144,7 +144,7 @@ Library.ShowToggleFrameInKeybinds = true
 
 local Window = Library:CreateWindow({
 
-    Title = "Nova Hub",
+    Title = "Nova Hub || FF2",
 
     Footer = "Made by @d1starzz || https://discord.gg/Q8g5Njz9bt",
 
@@ -158,7 +158,7 @@ local Window = Library:CreateWindow({
 
     TabPadding = 8,
 
-    Color = Color3.fromRGB(0, 196, 255)
+    Color = Color3.fromRGB(159, 115, 254)
 
 })
 
@@ -2068,7 +2068,7 @@ function Grapher:GetDynamicColor()
 
     local lerpVal = (math.sin(t) + 1) / 2
 
-    local babyBlue = Color3.fromRGB(137, 207, 240)
+    local babyBlue = Color3.fromRGB(159, 115, 254)
 
     local babyPurple = Color3.fromRGB(159, 115, 254)
 
