@@ -1,5 +1,5 @@
 -- Get current PlaceId
-local placeId = game.PlaceID
+local placeId = game.placeID
 
 -- field goal sim
 if placeId == 9030362964 then
