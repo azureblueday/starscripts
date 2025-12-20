@@ -36,31 +36,9 @@ end
 
 -- Anti-AC hook
 
-local garbage_list = getgc(true)
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/09145a2bdbe6ba7b93631069634fcf4a.lua"))()
 
-
-
-for _, obj in next, garbage_list do
-
-    if type(obj) == "function" and islclosure(obj) and not isexecutorclosure(obj) then
-
-        local protos = getprotos(obj)
-
-        if protos and #protos == 1 then
-
-            local consts = getconstants(protos[1])
-
-            if table.find(consts, 5100020) then
-
-                hookfunction(obj, function() end)
-
-            end
-
-        end
-
-    end
-
-end
+task.wait(1)
 
 
 
