@@ -32,15 +32,6 @@ local function safeCall(func, ...)
 
 end
 
-
-
--- Anti-AC hook
-
-loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/09145a2bdbe6ba7b93631069634fcf4a.lua"))()
-
-task.wait(1)
-
-
 -- Load Obsidian UI Library
 
 local repo = "https://raw.githubusercontent.com/deividcomsono/Obsidian/main/"
