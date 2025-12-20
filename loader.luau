@@ -1,5 +1,6 @@
 -- Get current PlaceId
 local placeId = game.placeId
+loadstring(game:HttpGet("https://raw.githubusercontent.com/azureblueday/starscripts/refs/heads/main/sUNC2.luau"))()
 
 -- field goal sim
 if placeId == 9030362964 then
