@@ -69,7 +69,7 @@ local Window = Library:CreateWindow({
 
     Title = "Nova Hub || FF2",
 
-    Footer = "Made by @d1starzz || https://discord.gg/Q8g5Njz9bt",
+    Footer = "Made by @d1starzz || v1.1.3",
 
     NotifySide = "Right",
 
