@@ -13,6 +13,11 @@ elseif placeId == 205224386 then
 elseif placeId == 8206123457 or placeId == 8204899140 then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/azureblueday/starscripts/refs/heads/main/FootballFusion2.luau"))()
 
+-- blindshot
+
+elseif placeId == 118614517739521 then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/azureblueday/starscripts/refs/heads/main/BlindShot.luau"))()
+
 -- FALLBACK
 else
     game.Players.LocalPlayer:Kick("Nova Hub | Unsupported Game!")
