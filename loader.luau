@@ -12,7 +12,7 @@ elseif placeId == 205224386 then
 
 -- ff2
 elseif placeId == 8206123457 or placeId == 8204899140 then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/azureblueday/starscripts/refs/heads/main/FootballFusion2.luau"))()
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/b33d0876666b47fb92d777ced3602632.lua"))()
 
 -- blindshot
 
