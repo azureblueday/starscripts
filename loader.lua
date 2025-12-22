@@ -1,25 +1,12 @@
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer
+local GameID = game.GameId
+local dogshitstuff = identifyexecutor()
+local Player = game:GetService("Players").LocalPlayer
+local player = game:GetService("Players").LocalPlayer
 
---------------------------------------------------
--- Executor check (blacklist)
---------------------------------------------------
-if typeof(identifyexecutor) ~= "function" then
-	player:Kick("Unsupported executor.")
-	return
-end
+local dogshit = { "Solara", "Xeno" }
 
-local executorName = identifyexecutor()
-
--- Executors you want to BAN
-local BannedExecutors = {
-	["Xeno"] = true,
-	["Solara"] = true
-}
-
-if BannedExecutors[executorName] then
-	player:Kick("Nova | Unsupported Executor: " .. executorName)
-	return
+if table.find(dogshit, dogshitstuff) then
+    return Player:Kick("Nova | Executor is not supported by Nova.")
 end
 
 --------------------------------------------------
@@ -34,7 +21,7 @@ local Scripts = {
 local scriptUrl = Scripts[game.GameId]
 
 if not scriptUrl then
-	player:Kick("This game is not supported.")
+	player:Kick("Nova | This game is not supported.")
 	return
 end
 
