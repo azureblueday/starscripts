@@ -6,7 +6,7 @@ local player = game:GetService("Players").LocalPlayer
 local dogshit = { "Solara", "Xeno" }
 
 if table.find(dogshit, dogshitstuff) then
-    return Player:Kick("Nova | Executor is not supported by Nova.")
+    return game:GetService("Players").LocalPlayer:Kick("Nova | Executor is not supported by Nova.")
 end
 
 --------------------------------------------------
