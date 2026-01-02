@@ -1,13 +1,23 @@
 local GameID = game.GameId
-local dogshitstuff = identifyexecutor()
 local Player = game:GetService("Players").LocalPlayer
 local player = game:GetService("Players").LocalPlayer
 
-local dogshit = { "Solara" }
+-- ass executors
+local dogshit = identifyexecutor()
+local dogshitlist = { "Solara" }
+  
+-- game id shit
 
-if table.find(dogshit, dogshitstuff) then
-    return game:GetService("Players").LocalPlayer:Kick("Nova | Executor is not supported by Nova.")
+print("Checking sUNC...")
+
+if table.find(dogshitlist, dogshit) then
+    game.Players.LocalPlayer:Kick("Nova | Your executor is not supported by us due to low sUNC, which risks bans as it cannot handle our bypass.")
+    print("Executor does not have enough sUNC, safeguards kicking now..")  
 end
+
+task.wait(1)
+
+print("sUNC Check passed! Your executor is supported by Nova Hub.")
 
 --------------------------------------------------
 -- GameId check
