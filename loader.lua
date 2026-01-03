@@ -11,7 +11,7 @@ local dogshitlist = { "Solara" }
 print("Checking sUNC...")
 
 if table.find(dogshitlist, dogshit) then
-    game.Players.LocalPlayer:Kick("Nova | Your executor is not supported by us due to low sUNC, which risks bans as it cannot handle our bypass.")
+    game.Players.LocalPlayer:Kick("ew solara")
     print("Executor does not have enough sUNC, safeguards kicking now..")  
 end
 
