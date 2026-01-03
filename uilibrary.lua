@@ -1,13 +1,13 @@
 --{{ Gonna be useful later }}--
-local scriptname = "N/A"
-local owner = "N/A"
-local Discordowner = "N/A"
+local scriptname = "Nova Hub"
+local owner = "@d1starzz"
+local Discordowner = "@d1starzz"
 local investor = "N/A"
 local manager = "N/A"
 local admin = "N/A"
 local ver = "1.0.0"
-local discord = "discord.gg/"
-local updated = os.date('00/00/0000')
+local discord = "discord.gg/getnova"
+local updated = os.date('01/03/2026')
 local color1 = Color3.fromRGB(69, 94, 255)
 local color2 = Color3.fromRGB(255, 255, 255)
 local color3 = Color3.fromRGB(11, 10, 15)
@@ -809,41 +809,60 @@ function Components.Sidebar(parent)
     return sidebar, container
 end
 
-Components._tabs = {}
+Components._tabs = Components._tabs or {}
 
 function Components.SetActiveTab(tab, state)
+    if not tab then return end
+
     local bar   = tab:FindFirstChild("ActiveBar")
     local label = tab:FindFirstChild("Label")
     local icon  = tab:FindFirstChild("Icon")
 
-    if not Components._initialized then
-        tab.BackgroundColor3      = state and UDim2.new(0,4,1,-8) or UDim2.new(0,0,1,-8)
-        bar.Size                  = state and UDim2.new(0,4,1,-8) or UDim2.new(0,0,1,-8)
-        label.TextColor3          = state and color1
-        icon.ImageColor3          = state and ColorAccent or Color3.fromRGB(200,200,200)
-        icon.Rotation             = state and 10 or 0
-
-        Components._activeTab = tab
+    -- guard (prevents "attempt to index nil" and silent fails)
+    if not bar or not label or not icon then
+        warn("SetActiveTab missing parts:", tab.Name, bar, label, icon)
         return
     end
 
+    -- first-time / before init: set instantly (no tweens)
+    if not Components._initialized then
+        tab.BackgroundColor3 = state and Color3.fromRGB(35,36,40) or Color3.fromRGB(8,7,8)
+        bar.Size             = state and UDim2.new(0,4,1,-8)      or UDim2.new(0,0,1,-8)
+        label.TextColor3     = state and color1                   or Color3.fromRGB(200,200,200)
+        icon.ImageColor3     = state and ColorAccent              or Color3.fromRGB(200,200,200)
+        icon.Rotation        = state and 10                       or 0
+
+        if state then
+            Components._activeTab = tab
+        end
+        return
+    end
+
+    -- normal: tween
     local tweenInfo = DEFAULT_TWEEN_ELASTIC
+
     TweenService:Create(tab, tweenInfo, {
-        BackgroundColor3 = state and Color3.fromRGB(35,36,40) or Color3.fromRGB(45,46,50),
+        BackgroundColor3 = state and Color3.fromRGB(35,36,40) or Color3.fromRGB(8,7,8),
     }):Play()
+
     TweenService:Create(bar, tweenInfo, {
         Size = state and UDim2.new(0,4,1,-8) or UDim2.new(0,0,1,-8)
     }):Play()
+
     TweenService:Create(label, tweenInfo, {
-        TextColor3 = state and Color3.fromRGB(1,1,1) or Color3.fromRGB(200,200,200)
+        TextColor3 = state and color1 or Color3.fromRGB(200,200,200)
     }):Play()
+
     TweenService:Create(icon, tweenInfo, {
         ImageColor3 = state and ColorAccent or Color3.fromRGB(200,200,200),
         Rotation    = state and 10 or 0
     }):Play()
 
-    Components._activeTab = tab
+    if state then
+        Components._activeTab = tab
+    end
 end
+
 
 local DEFAULT_TWEEN = TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
 local DEFAULT_TWEEN_ELASTIC = TweenInfo.new(0.5, Enum.EasingStyle.Elastic, Enum.EasingDirection.Out)
