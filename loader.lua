@@ -2,23 +2,6 @@ local GameID = game.GameId
 local Player = game:GetService("Players").LocalPlayer
 local player = game:GetService("Players").LocalPlayer
 
--- ass executors
-local dogshit = identifyexecutor()
-local dogshitlist = { "Solara" }
-  
--- game id shit
-
-print("Checking sUNC...")
-
-if table.find(dogshitlist, dogshit) then
-    game.Players.LocalPlayer:Kick("ew solara")
-    print("Executor does not have enough sUNC, safeguards kicking now..")  
-end
-
-task.wait(1)
-
-print("sUNC Check passed! Your executor is supported by Nova Hub.")
-
 --------------------------------------------------
 -- GameId check
 --------------------------------------------------
