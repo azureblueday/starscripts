@@ -20,9 +20,14 @@ local Scripts = {
 -- ff2
 local FF2 = {
 	[8204899140] = "https://api.luarmor.net/files/v3/loaders/317ec9710555a4bbf0389a4f2c503fae.lua", -- ff2
-	[8206123457] = "https://api.luarmor.net/files/v3/loaders/7003c36d003a39d1b1088396b74a3e5f.lua", -- PRACTICE
+	[8206123457] = "https://api.luarmor.net/files/v3/loaders/d0b01d8dc86679d0d79d014fcbeb259c.lua", -- PRACTICE
 }
 local scriptUrl = Scripts[game.GameId] or FF2[game.PlaceId]
+
+if not ff2scripturl then
+	player:Kick("Cryptic | This game is not supported.")
+	return
+end
 
 if not scriptUrl then
 	player:Kick("Cryptic | This game is not supported.")
