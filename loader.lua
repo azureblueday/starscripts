@@ -4,10 +4,10 @@ local Player = game:GetService("Players").LocalPlayer
 local player = game:GetService("Players").LocalPlayer
 
 local dogshit = identifyexecutor()
-local shit = { "Solara" }
+local shit = { "Solara", "Xeno", "Fluxus" }
 
 if table.find(shit, dogshit) then
-	player:Kick("ew solara")
+	player:Kick("Cryptic | Your executor is not supported, please refer to our website for supported executors")
 end
 -- normal
 local Scripts = {
