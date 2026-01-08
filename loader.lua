@@ -24,11 +24,6 @@ local FF2 = {
 }
 local scriptUrl = Scripts[game.GameId] or FF2[game.PlaceId]
 
-if not ff2scripturl then
-	player:Kick("Cryptic | This game is not supported.")
-	return
-end
-
 if not scriptUrl then
 	player:Kick("Cryptic | This game is not supported.")
 	return
