@@ -20,6 +20,7 @@ local Scripts = {
 -- ff2
 local FF2 = {
 	[8204899140] = "https://api.luarmor.net/files/v3/loaders/317ec9710555a4bbf0389a4f2c503fae.lua", -- ff2
+	[104709320604721] = "https://api.luarmor.net/files/v3/loaders/317ec9710555a4bbf0389a4f2c503fae.lua", -- league
 	[8206123457] = "https://api.luarmor.net/files/v3/loaders/d0b01d8dc86679d0d79d014fcbeb259c.lua", -- PRACTICE
 }
 local scriptUrl = Scripts[game.GameId] or FF2[game.PlaceId]
