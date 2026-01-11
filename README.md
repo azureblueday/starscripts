@@ -1,1 +1,1 @@
-da repo for nova hub teehee
+cryptic 
