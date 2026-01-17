@@ -1,12 +1,12 @@
 if game.PlaceId == 8204899140 then
 	loadstring(game:HttpGet("https://cdn.snc.dev/695c6cf7c19b7064b9248279/0rctdgjr97qc"))()
-	wait(0.1)
+	task.wait(0.1)
 	loadstring(game:HttpGet("https://cdn.snc.dev/696b1914700811ec3fbf07be/9c09mngppbt"))()
 end
 
 if game.PlaceId == 104709320604721 then
 	loadstring(game:HttpGet("https://cdn.snc.dev/695c6cf7c19b7064b9248279/0rctdgjr97qc"))()
-	wait(0.1)
+	task.wait(0.1)
 	loadstring(game:HttpGet("https://cdn.snc.dev/696b1914700811ec3fbf07be/9c09mngppbt"))()
 end
 
