@@ -1,4 +1,5 @@
-print("loader v0.2")
+print("loader v0.3")
+local ProjectId = "696b1914700811ec3fbf07be"
 if game.PlaceId == 8204899140 then
 	loadstring(game:HttpGet("https://cdn.snc.dev/695c6cf7c19b7064b9248279/0rctdgjr97qc"))()
 	task.wait(0.1)
