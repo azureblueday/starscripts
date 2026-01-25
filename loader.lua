@@ -7,25 +7,20 @@ local dogshit = identifyexecutor()
 local shit = { "Solara", "Xeno", "Fluxus" }
 
 if table.find(shit, dogshit) then
-	player:Kick("Cryptic | Your executor is not supported, please refer to our website for supported executors")
+	player:Kick("Nova | Your executor is not supported, please refer to our website for supported executors")
 end
 -- normal
 local Scripts = {
-	[184199275] = "https://api.luarmor.net/files/v3/loaders/bc4438f2488e366d2848d39ddb70cacc.lua", -- UF
-	[4931927012] = "https://api.luarmor.net/files/v3/loaders/40ef3f5eb3cede5e90381a450c3a6e40.lua", -- BL
-	[6505338302] = "https://api.luarmor.net/files/v3/loaders/a3d0a148118f11cf089a486b7bcc0c9d.lua", -- FBL
+	[3150475059] = "https://api.luarmor.net/files/v3/loaders/57c6826164fad71af5d942b845fb90c4.lua", -- UF
+	[184199275] = "https://api.luarmor.net/files/v3/loaders/797b0bfb251db8e98838c64d841da259.lua", -- UF
+	[4931927012] = "https://api.luarmor.net/files/v3/loaders/bbe30263c9d61ae388ed5acf5340fe2f.lua", -- BL
+	[6505338302] = "https://api.luarmor.net/files/v3/loaders/b13d4af2baa338fa59b1d62e0fda61cc.lua", -- FBL
 }
 
--- ff2
-local FF2 = {
-	[8204899140] = "https://api.luarmor.net/files/v3/loaders/317ec9710555a4bbf0389a4f2c503fae.lua", -- ff2
-	[104709320604721] = "https://api.luarmor.net/files/v3/loaders/317ec9710555a4bbf0389a4f2c503fae.lua", -- league
-	[8206123457] = "https://api.luarmor.net/files/v3/loaders/d0b01d8dc86679d0d79d014fcbeb259c.lua", -- PRACTICE
-}
-local scriptUrl = Scripts[game.GameId] or FF2[game.PlaceId]
+local scriptUrl = Scripts[game.GameId]
 
 if not scriptUrl then
-	player:Kick("Cryptic | This game is not supported.")
+	player:Kick("Nova | This game is not supported.")
 	return
 end
 
