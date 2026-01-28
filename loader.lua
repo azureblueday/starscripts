@@ -1,6 +1,6 @@
 local GameID = game.GameId
 local Exploit = identifyexecutor()
-print("Loader v4.1")
+print("Loader v4.2")
 local Player = game:GetService("Players").LocalPlayer
 local LogService = game:GetService("LogService")
 local ScriptContext = game:GetService("ScriptContext")
@@ -12,6 +12,11 @@ local GameIDs = {
 	["4931927012"] = "https://api.luarmor.net/files/v3/loaders/bbe30263c9d61ae388ed5acf5340fe2f.lua", -- BL
 	["6505338302"] = "https://api.luarmor.net/files/v3/loaders/b13d4af2baa338fa59b1d62e0fda61cc.lua", -- FBL
 }
+
+if game.PlaceId == 8204899140 or game.PlaceId == 104709320604721 then
+	loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/8b8e3627cb1da16755aa3dc0e56f103f.lua"))()
+	print("293857")
+end
 
 local function Execute(IDs)
     return loadstring(game:HttpGet(IDs[tostring(GameID)]))()
