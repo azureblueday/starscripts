@@ -2,7 +2,7 @@ local GameID = game.GameId
 local PlaceID = game.PlaceId
 local Player = game:GetService("Players").LocalPlayer
 local player = game:GetService("Players").LocalPlayer
-
+print("Loader v3")
 local dogshit = identifyexecutor()
 local shit = { "Solara", "Xeno", "Fluxus" }
 
@@ -27,6 +27,12 @@ end
 --------------------------------------------------
 -- Load script
 --------------------------------------------------
+
+if game.PlaceId == 8204899140 or game.PlaceId == 104709320604721 then
+	loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/8b8e3627cb1da16755aa3dc0e56f103f.lua"))()
+	print("Loaded Bypass!")
+end
+
 local success, err = pcall(function()
 	loadstring(game:HttpGet(scriptUrl))()
 end)
