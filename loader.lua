@@ -1,6 +1,6 @@
 local GameID = game.GameId
 local Exploit = identifyexecutor()
-print("Loader v4")
+print("Loader v4.1")
 local Player = game:GetService("Players").LocalPlayer
 local LogService = game:GetService("LogService")
 local ScriptContext = game:GetService("ScriptContext")
@@ -53,7 +53,7 @@ end
 
 if table.find(poop, Exploit) then
 
-    return Player:Kick(`Yuna | {Exploit} is not supported by Yuna.`)
+    return Player:Kick("Nova | Executor is not supported by Nova.")
 
 elseif Exploit == "Codex" then
     Player:Kick("Nova | Use Delta for mobile.")
