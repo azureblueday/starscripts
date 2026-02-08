@@ -1,2 +1,11 @@
+local ProjectId = "698910339dab15797321e6e7"
+local Scripts = {
+    [4864117649] = "https://cdn.snc.dev/698910339dab15797321e6e7/8s3ia71wr35", -- utg
+}
 
-loadstring(game:HttpGet("https://cdn.snc.dev/6976b01de5de3205ca5ced5e/loader"))()
+local Script = Scripts[game.GameId]
+if Script then
+    loadstring(game:HttpGet(Script))()
+else
+   game:GetService("Players").LocalPlayer:Kick("Script is currently unavaliable for this game!")
+end
