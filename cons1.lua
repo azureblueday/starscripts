@@ -8,14 +8,14 @@ local ConfigFolder = "Nexus_Configs"
 if not isfolder(ConfigFolder) then makefolder(ConfigFolder) end
 
 local Theme = {
-    Background = Color3.fromRGB(20, 20, 28),
-    Sidebar    = Color3.fromRGB(25, 25, 35),
-    Element    = Color3.fromRGB(32, 32, 42),
-    Text       = Color3.fromRGB(245, 245, 255),
-    TextDim    = Color3.fromRGB(160, 160, 180),
-    Accent1    = Color3.fromRGB(140, 20, 255), 
-    Accent2    = Color3.fromRGB(255, 50, 180)
-}
+    Background = Color3.fromRGB(20, 25, 30), 
+    Sidebar = Color3.fromRGB(25, 35, 40), 
+    Element = Color3.fromRGB(35, 45, 55),
+    Text = Color3.fromRGB(240, 250, 255), 
+    TextDim = Color3.fromRGB(180, 200, 220),
+    Accent1 = Color3.fromRGB(100, 220, 255), 
+    Accent2 = Color3.fromRGB(50, 150, 255)
+},
 
 local ThemePresets = {
     ["Nexus (Default)"] = {
